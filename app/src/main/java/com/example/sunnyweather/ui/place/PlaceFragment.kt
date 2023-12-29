@@ -1,5 +1,6 @@
 package com.example.sunnyweather.ui.place
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sunnyweather.R
+import com.example.sunnyweather.ui.wearher.WeatherActivity
 import kotlinx.android.synthetic.main.fragment_place.*
 
 class PlaceFragment:Fragment() {
@@ -27,6 +29,19 @@ class PlaceFragment:Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        if (viewModel.isPlaceSaved()){/*如果当前已有存储的城市数据*/
+            val place = viewModel.getSavePlace()/*就获取以存储的数据并解析成Place对象*/
+            val intent = Intent(context, WeatherActivity::class.java).apply {
+                putExtra("location_lng",place.location.lng)/*并传递经纬度坐标 和 城市名直接跳转并传递给WeatherActivity 这样就不用每次都重新搜索并选择城市了利用sp*/
+                putExtra("location_lat",place.location.lat)
+                putExtra("place_name",place.name)
+            }
+            startActivity(intent)
+            activity?.finish()
+            return
+        }
+
         val layoutManager = LinearLayoutManager(activity)/*设置了管理器*/
          recyclerView.layoutManager = layoutManager/*调用使用管理器*/
 
@@ -58,7 +73,8 @@ class PlaceFragment:Fragment() {
             }else{
                 Toast.makeText(activity, "未能查询到任何地点", Toast.LENGTH_SHORT).show()/*如果数据为空就弹出一个toast*/
             }
-
         })
+
+
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weatherLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:overScrollMode="never"
+    android:visibility="invisible">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--通过滚动的方式查看屏幕以外的内容 -->
+
+    <!--ScrollView内部只允许一个直接子布局  所以嵌套了一个LinearLayout将布局逐个引用-->
+    <include layout="@layout/now"/>
+    <include layout="@layout/forecast"/>
+    <include layout="@layout/life_index"/>
+</LinearLayout>
+</ScrollView>

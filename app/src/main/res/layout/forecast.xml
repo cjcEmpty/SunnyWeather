@@ -2,33 +2,33 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:layout_margin="12dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginRight="15dp"
     app:cardCornerRadius="4dp">
 
-    <!-- MaterialCardView 作为子项的最外层布局 使每个元素都在卡片中 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="18dp"
         android:orientation="vertical">
 
-        <!--地区名-->
         <TextView
-            android:id="@+id/placeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="预报"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="20sp" />
 
-        <!--地区的详细地址-->
-        <TextView
-            android:id="@+id/placeAddress"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/forecastLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="14sp" />
+            android:orientation="vertical">
+
+        </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

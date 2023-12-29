@@ -13,6 +13,9 @@ object SunnyWeatherNetwork {
 
     private val placeService = ServiceCreator.create<PlaceService>()
 
+    private val weatherService = ServiceCreator.create(WeatherService::class.java)
+suspend fun getDailyWeather(lng:String,lat:String) = weatherService.getDailyWeather(lng,lat).await()
+    suspend fun  getRealtimeWeather(lng:String,lat:String) = weatherService.getRealtimeWeather(lng,lat).await()
 
     /*todo 在当外部调用searchPlaces函数时 Retrofit就会立刻发起网络请求  同时当前的协程也会被阻塞 直到服务器响应请求后 await函数将解析出来的数据模型对象取出并返回 同时恢复当前协程的执行*/
     /*searchPlaces函数在的到await函数返回值后  会将该数据再返回到上一层*/
