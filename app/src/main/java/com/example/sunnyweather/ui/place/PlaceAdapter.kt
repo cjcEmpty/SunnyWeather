@@ -27,6 +27,8 @@ class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: L
             val position = holder.adapterPosition/*在点击事件之后获取经纬度坐标 和 地区名称 */
             val place = placeList[position]
             val activity = fragment.activity
+
+            /*显示滑动菜单的界面*/
             if (activity is WeatherActivity){/*如果是在WeatherActivity中 */
                 activity.drawerLayout.closeDrawers()/*在里面  那么就关闭滑动菜单*/
                 activity.viewModel.locationLng = place.location.lng/*赋值新的经纬度坐标*/

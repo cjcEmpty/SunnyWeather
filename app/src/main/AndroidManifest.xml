@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--        android:icon="@mipmap/ic_launcher"  是专门用于应用程序的图标的 -->
     <application
         android:name=".SunnyWeatherApplication"
         android:allowBackup="true"
