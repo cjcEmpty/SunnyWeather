@@ -12,6 +12,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sunnyweather.MainActivity
 import com.example.sunnyweather.R
 import com.example.sunnyweather.ui.wearher.WeatherActivity
 import kotlinx.android.synthetic.main.fragment_place.*
@@ -30,7 +31,7 @@ class PlaceFragment:Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (viewModel.isPlaceSaved()){/*如果当前已有存储的城市数据*/
+        if (activity is MainActivity/*this嵌入MainActivity并保存选中的城市才会跳转WeatherActivity*/ && viewModel.isPlaceSaved()){/*如果当前已有存储的城市数据*/
             val place = viewModel.getSavePlace()/*就获取以存储的数据并解析成Place对象*/
             val intent = Intent(context, WeatherActivity::class.java).apply {
                 putExtra("location_lng",place.location.lng)/*并传递经纬度坐标 和 城市名直接跳转并传递给WeatherActivity 这样就不用每次都重新搜索并选择城市了利用sp*/
